@@ -86,7 +86,7 @@ public class GunController : MonoBehaviour
         }
         else
         {
-            currentAmmoInClip = ammoPerClip;
+            currentAmmoInClip = totalAmmo;
         }
         reloading = false;
         RLTimer = reloadTime;

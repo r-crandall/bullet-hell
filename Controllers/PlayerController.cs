@@ -3,7 +3,7 @@
 public class PlayerController : MonoBehaviour
 {
     Rigidbody playerRigidbody;
-    public float speed = 10f;
+    public float speed = 10f; //rename to playerSpeed?
 
     private Quaternion targetRotation;
 
@@ -12,15 +12,43 @@ public class PlayerController : MonoBehaviour
 
     public float rotationSpeed = 450;
 
+    public float printTimer = 5.0f;
+    private float timer;
+
+    public float ratioBetweenPlayerAndCam = 0.5f;
+    
+    private Vector3 finalCamPosition;
+
     private void Start()
     {
         playerRigidbody = GetComponent<Rigidbody>();
+        timer = printTimer;
     }
 
     private void FixedUpdate()
     {
         MovePlayer();
         FaceMouse();
+        timer -= Time.deltaTime;
+        PositionPrinter();
+    }
+
+    void PositionPrinter()
+    {
+        if(timer <= 0)
+        {
+            Vector3 playerPos = playerRigidbody.position;
+            Vector3 mousePos = Input.mousePosition;
+                        
+            Vector3 diff = playerPos - mousePos;
+            finalCamPosition = playerPos + (diff * ratioBetweenPlayerAndCam);
+
+            print("PlayePos: " + playerPos.ToString());
+            print("MousePos: " + mousePos.ToString());
+            print("finalCamPos: " + finalCamPosition.ToString());
+
+            timer = printTimer;
+        }
     }
 
     void MovePlayer()

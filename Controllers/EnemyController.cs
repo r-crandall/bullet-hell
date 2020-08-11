@@ -13,7 +13,6 @@ public class EnemyController : MonoBehaviour
 
     public bool canShoot = false;
     public float rotateFloat = 1.0f;
-    //public float projectileCD = 1.0f;
 
     private float timer;
 

@@ -7,10 +7,10 @@ public class Enemy : MonoBehaviour
     Renderer rend;
     Rigidbody enemyInstance;
 
-    public float maxHealth = 10;
-    public float currentHealth = 10;
+    public float maxHealth = 100;
+    private float currentHealth;
 
-    public bool dieOnPlayerCollision = true;
+    public int enemyScore = 1;
 
     public bool lerped; //lerped enemies could be stronger somehow.
     public Color damagedColor = Color.white; //lerped color 1
@@ -20,12 +20,15 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        currentHealth = maxHealth;
         rend = GetComponent<Renderer>();
         startColor = rend.material.color;
     }
 
     public void reduceCurrentHealth(float amount)
     {
+        Debug.Log("reduceCurrentHealth called, amount: " + amount.ToString());
+        Debug.Log("CurrentHealth: " + currentHealth.ToString());
         currentHealth -= amount;
     }
 
@@ -59,6 +62,7 @@ public class Enemy : MonoBehaviour
 
     void Damaged()
     {
+       //AudioSource.play damaged sound
         rend.material.color = damagedColor;
     }
 

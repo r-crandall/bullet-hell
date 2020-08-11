@@ -6,6 +6,7 @@ public class PlayerAudio : MonoBehaviour
 {
 
     public AudioClip resourceGather;
+    public AudioClip playerDamaged;
     public AudioSource audioS;
 
     public void playResourceSound()
@@ -13,6 +14,10 @@ public class PlayerAudio : MonoBehaviour
         audioS.PlayOneShot(resourceGather);
     }
 
+    public void playSound(AudioClip sound)
+    {
+        audioS.PlayOneShot(sound);
+    }
     /*
     public void playFireProjSound()
     {
